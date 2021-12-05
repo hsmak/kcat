@@ -15,7 +15,9 @@ RUN apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     apk del .build-dependencies && \
     rm -rf "/tmp/"*
 
-RUN echo Verifying install ...  && echo scala --version && scala --version
+RUN echo Verifying install ...  && \
+    echo scala --version && \
+    scala --version
 
 FROM alpine:3.14
 
@@ -23,7 +25,11 @@ FROM alpine:3.14
 COPY --from=jdk11 /opt/java /opt/java
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH=$PATH:/opt/java/openjdk/bin
-RUN echo Verifying install ... && echo javac --version && javac --version  && echo java --version && java --version
+RUN echo Verifying install ... && \
+    echo javac --version && \
+    javac --version  && \
+    echo java --version && \
+    java --version
 
 #Scala
 COPY --from=jdk11 /opt/scala /opt/scala
